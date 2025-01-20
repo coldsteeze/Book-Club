@@ -1,10 +1,16 @@
 package korobkin.nikita.bookclub.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import korobkin.nikita.bookclub.entity.enums.BookGenre;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "Book")
@@ -17,21 +23,48 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title")
+    @Column(name = "title", nullable = false)
+    @NotBlank(message = "Title must not be blank")
+    @Size(max = 255, message = "Title must not exceed 255 characters")
     private String title;
 
-    @Column(name = "author")
+    @Column(name = "author", nullable = false)
+    @NotBlank(message = "Author must not be blank")
+    @Size(max = 255, message = "Author must not exceed 255 characters")
     private String author;
 
-    @Column(name = "genre")
+    @Column(name = "genre", nullable = false)
+    @Enumerated(EnumType.STRING)
     private BookGenre genre;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2000)
+    @Size(max = 2000, message = "Description must not exceed 2000 characters")
     private String description;
 
-    @Column(name = "ISBN")
+    @Column(name = "ISBN", unique = true)
     private String isbn;
 
     @Column(name = "rating")
-    private float rating;
+    @Min(value = 1, message = "Rating must be at least 1")
+    @Max(value = 5, message = "Rating must be at most 5")
+    private Float rating;
+
+    @OneToMany(mappedBy = "book", fetch = FetchType.LAZY)
+    private List<Review> reviews;
+
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    private void onCreate() {
+        this.createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    private void onUpdate() {
+        this.updatedAt = LocalDateTime.now();
+    }
 }
