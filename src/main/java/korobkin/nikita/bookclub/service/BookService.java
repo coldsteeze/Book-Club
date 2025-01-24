@@ -37,42 +37,53 @@ public class BookService {
         bookRepository.save(updatedBook);
     }
 
-    public Page<Book> getBooks(BookGenre genre, Double ratingMin, int page, int size, List<String> sort) {
-        // Создаем объект Sort
+    public Page<Book> getBooks(BookGenre genre, Double ratingMin, int page, int size, String sort) {
+        // Создаем объект Sort с учетом переданных параметров сортировки
         Sort sortOrder = parseAndValidateSort(sort);
 
-        // Создаем объект Pageable
+        // Создаем объект Pageable для пагинации
         Pageable pageable = PageRequest.of(page, size, sortOrder);
 
-        // Используем метод репозитория с фильтрацией и пагинацией
+        // Если передан фильтр по жанру или минимальному рейтингу, фильтруем по этим параметрам
         if (genre != null || ratingMin != null) {
             return bookRepository.findBooksByFilters(genre, ratingMin, pageable);
         } else {
-            return bookRepository.findAll(pageable);
+            return bookRepository.findAll(pageable);  // В противном случае возвращаем все книги
         }
     }
 
-    private Sort parseAndValidateSort(List<String> sort) {
+    private Sort parseAndValidateSort(String sort) {
         if (sort == null || sort.isEmpty()) {
             return Sort.by("createdAt").descending(); // Сортировка по умолчанию
         }
 
-        // Парсинг параметров сортировки
-        Sort sortOrder = Sort.unsorted();
-        for (String sortParam : sort) {
-            String[] sortParts = sortParam.split(",");
-            String field = sortParts[0].trim();
-            Sort.Direction direction = sortParts.length > 1 && "desc".equalsIgnoreCase(sortParts[1])
-                    ? Sort.Direction.DESC
-                    : Sort.Direction.ASC;
+        // Разделяем строку на части по запятой (field,direction)
+        String[] sortParts = sort.split(",");
 
-            // Проверяем, разрешено ли сортировать по этому полю
-            if (!ALLOWED_SORT_FIELDS.contains(field)) {
-                throw new IllegalArgumentException("Invalid sort field: " + field);
-            }
-
-            sortOrder = sortOrder.and(Sort.by(direction, field));
+        if (sortParts.length < 1 || sortParts.length > 2) {
+            throw new IllegalArgumentException("Invalid sort parameter: " + sort);
         }
-        return sortOrder;
+
+        // Получаем поле сортировки
+        String field = sortParts[0].trim();
+
+        // Проверяем, разрешено ли сортировать по этому полю
+        if (!ALLOWED_SORT_FIELDS.contains(field)) {
+            throw new IllegalArgumentException("Invalid sort field: " + field);
+        }
+
+        // Определяем направление сортировки
+        Sort.Direction direction = Sort.Direction.ASC; // По умолчанию ASC
+        if (sortParts.length == 2) {
+            String directionString = sortParts[1].trim().toLowerCase();
+            if ("desc".equals(directionString)) {
+                direction = Sort.Direction.DESC;
+            } else if (!"asc".equals(directionString)) {
+                throw new IllegalArgumentException("Invalid sort direction: " + directionString);
+            }
+        }
+
+        // Возвращаем готовую сортировку
+        return Sort.by(direction, field);
     }
 }

@@ -1,17 +1,13 @@
 package korobkin.nikita.bookclub.controller;
 
+import jakarta.validation.Valid;
 import korobkin.nikita.bookclub.entity.Book;
 import korobkin.nikita.bookclub.entity.enums.BookGenre;
 import korobkin.nikita.bookclub.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/books")
@@ -19,16 +15,21 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
 
+    @PostMapping("/add")
+    public ResponseEntity<Book> addBook(@RequestBody @Valid Book book) {
+        bookService.createBook(book);
+        return ResponseEntity.ok(book);
+    }
+
+
     @GetMapping
-    public ResponseEntity<Page<Book>> getBooks(
-            @RequestParam(required = false) BookGenre genre,
-            @RequestParam(required = false) Double ratingMin,
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size,
-            @RequestParam(required = false) List<String> sort // Список параметров сортировки
-    ) {
-        // Получаем книги из сервиса
-        Page<Book> books = bookService.getBooks(genre, ratingMin, page, size, sort);
-        return ResponseEntity.ok(books);
+    public Page<Book> getBooks(
+            @RequestParam(value = "genre", required = false) BookGenre genre,
+            @RequestParam(value = "ratingMin", required = false) Double ratingMin,
+            @RequestParam(value = "page", defaultValue = "0") int page,
+            @RequestParam(value = "size", defaultValue = "10") int size,
+            @RequestParam(value = "sort", required = false) String sort) {
+
+        return bookService.getBooks(genre, ratingMin, page, size, sort);
     }
 }

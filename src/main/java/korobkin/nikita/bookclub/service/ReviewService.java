@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Service
 @Transactional
@@ -19,14 +18,16 @@ public class ReviewService {
     private final BookRepository bookRepository;
 
     public void createReview(Review review) {
+        Book book = bookRepository.findById(review.getBook().getId()).orElse(null);
+
+        review.setBook(book);
+
+
         // Сохраняем отзыв
         reviewRepository.save(review);
 
-        // Получаем книгу из отзыва
-        Book book = review.getBook();
-
         // Пересчитываем средний рейтинг через запрос к базе
-        float averageRating = reviewRepository.calculateAverageRatingForBook(book.getId());
+        Float averageRating = reviewRepository.calculateAverageRatingForBook(book.getId());
         book.setRating(averageRating);
 
         // Обновляем поле updated_at
