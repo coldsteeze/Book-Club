@@ -7,6 +7,7 @@ import korobkin.nikita.bookclub.service.BookService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -16,9 +17,14 @@ public class BookController {
     private final BookService bookService;
 
     @PostMapping("/add")
-    public ResponseEntity<Book> addBook(@RequestBody @Valid Book book) {
-        bookService.createBook(book);
-        return ResponseEntity.ok(book);
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> addBook(@RequestBody @Valid Book book) {
+        try {
+            bookService.createBook(book);
+            return ResponseEntity.ok("Book added successfully");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Invalid genre value");
+        }
     }
 
 

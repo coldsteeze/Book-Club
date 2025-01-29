@@ -19,18 +19,10 @@ public class ReviewService {
 
     public void createReview(Review review) {
         Book book = bookRepository.findById(review.getBook().getId()).orElse(null);
-
         review.setBook(book);
-
-
-        // Сохраняем отзыв
         reviewRepository.save(review);
-
-        // Пересчитываем средний рейтинг через запрос к базе
         Float averageRating = reviewRepository.calculateAverageRatingForBook(book.getId());
         book.setRating(averageRating);
-
-        // Обновляем поле updated_at
         book.setUpdatedAt(LocalDateTime.now());
     }
 
