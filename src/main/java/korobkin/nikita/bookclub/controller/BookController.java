@@ -1,6 +1,8 @@
 package korobkin.nikita.bookclub.controller;
 
 import jakarta.validation.Valid;
+import korobkin.nikita.bookclub.dto.BookDTO;
+import korobkin.nikita.bookclub.dto.UpdateBookDTO;
 import korobkin.nikita.bookclub.entity.Book;
 import korobkin.nikita.bookclub.entity.enums.BookGenre;
 import korobkin.nikita.bookclub.service.BookService;
@@ -18,15 +20,31 @@ public class BookController {
 
     @PostMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<String> addBook(@RequestBody @Valid Book book) {
-        try {
-            bookService.createBook(book);
-            return ResponseEntity.ok("Book added successfully");
-        } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Invalid genre value");
-        }
+    public ResponseEntity<String> addBook(@RequestBody @Valid BookDTO bookDTO) {
+        bookService.createBook(bookDTO);
+        return ResponseEntity.ok("Book added successfully");
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<BookDTO> getBook(@PathVariable("id") int id) {
+        BookDTO bookDTO = bookService.findBookById(id);
+        return ResponseEntity.ok(bookDTO);
+    }
+
+    @PatchMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> updateBook(@PathVariable int id,
+                                             @RequestBody @Valid UpdateBookDTO updatebookDTO) {
+        bookService.updateBook(id, updatebookDTO);
+        return ResponseEntity.ok("Book updated successfully");
+    }
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<String> deleteBook(@PathVariable("id") int id) {
+        bookService.deleteBook(id);
+        return ResponseEntity.ok("Book deleted successfully");
+    }
 
     @GetMapping
     public Page<Book> getBooks(

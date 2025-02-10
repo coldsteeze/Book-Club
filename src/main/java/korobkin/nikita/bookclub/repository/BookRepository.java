@@ -19,4 +19,6 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             @Param("ratingMin") Double ratingMin,
             Pageable pageable
     );
+
+    Boolean existsByTitle(String title);
 }
