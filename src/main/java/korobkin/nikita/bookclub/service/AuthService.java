@@ -1,11 +1,9 @@
 package korobkin.nikita.bookclub.service;
 
-import korobkin.nikita.bookclub.dto.AuthenticationDTO;
-import korobkin.nikita.bookclub.dto.UserDTO;
+import korobkin.nikita.bookclub.dto.AuthenticationDto;
 import korobkin.nikita.bookclub.exception.AuthenticationFailedException;
-import korobkin.nikita.bookclub.security.JWTUtil;
+import korobkin.nikita.bookclub.security.JwtUtil;
 import lombok.AllArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -17,17 +15,16 @@ import org.springframework.transaction.annotation.Transactional;
 @AllArgsConstructor
 public class AuthService {
     private final AuthenticationManager authenticationManager;
-    private final JWTUtil jwtUtil;
+    private final JwtUtil jwtUtil;
 
-    public String authenticate(AuthenticationDTO authenticationDTO) {
+    public String authenticate(AuthenticationDto authenticationDTO) {
         UsernamePasswordAuthenticationToken authenticationToken =
                 new UsernamePasswordAuthenticationToken(authenticationDTO.getUsername(),
                         authenticationDTO.getPassword());
 
         try {
             authenticationManager.authenticate(authenticationToken);
-        }
-        catch (BadCredentialsException e) {
+        } catch (BadCredentialsException e) {
             throw new AuthenticationFailedException("Invalid username or password");
         }
 

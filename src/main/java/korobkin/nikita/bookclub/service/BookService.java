@@ -1,22 +1,24 @@
 package korobkin.nikita.bookclub.service;
 
-import korobkin.nikita.bookclub.dto.BookDTO;
-import korobkin.nikita.bookclub.dto.UpdateBookDTO;
+import korobkin.nikita.bookclub.dto.BookDto;
+import korobkin.nikita.bookclub.dto.BookResponse;
+import korobkin.nikita.bookclub.dto.ReviewResponse;
+import korobkin.nikita.bookclub.dto.UpdateBookDto;
 import korobkin.nikita.bookclub.entity.Book;
+import korobkin.nikita.bookclub.entity.User;
 import korobkin.nikita.bookclub.entity.enums.BookGenre;
 import korobkin.nikita.bookclub.exception.BookAlreadyExistsException;
 import korobkin.nikita.bookclub.exception.BookDoesNotExistsException;
 import korobkin.nikita.bookclub.repository.BookRepository;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -25,17 +27,18 @@ public class BookService {
     private static final List<String> ALLOWED_SORT_FIELDS = List.of("title", "author", "rating");
     private final BookRepository bookRepository;
     private final ModelMapper modelMapper;
+    private final UserBookService userBookService;
 
-    public void createBook(BookDTO bookDTO) {
-        if (bookRepository.existsByTitle(bookDTO.getTitle())) {
+    public void createBook(BookDto bookDto) {
+        if (bookRepository.existsByTitle(bookDto.getTitle())) {
             throw new BookAlreadyExistsException("Book already exists");
         }
         Book book = new Book();
-        book.setTitle(bookDTO.getTitle());
-        book.setAuthor(bookDTO.getAuthor());
-        book.setGenre(bookDTO.getGenre());
-        book.setDescription(bookDTO.getDescription());
-        book.setIsbn(bookDTO.getIsbn());
+        book.setTitle(bookDto.getTitle());
+        book.setAuthor(bookDto.getAuthor());
+        book.setGenre(bookDto.getGenre());
+        book.setDescription(bookDto.getDescription());
+        book.setIsbn(bookDto.getIsbn());
         bookRepository.save(book);
     }
 
@@ -44,39 +47,62 @@ public class BookService {
         bookRepository.delete(book);
     }
 
-    public BookDTO findBookById(int id) {
+    public BookDto findBookById(int id) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new BookDoesNotExistsException("Book not found"));
-        return modelMapper.map(book, BookDTO.class);
+        return modelMapper.map(book, BookDto.class);
     }
 
-    public void updateBook(int id, UpdateBookDTO updateBookDTO) {
+    public void updateBook(int id, UpdateBookDto updateBookDto) {
         Book book = bookRepository.findById(id).orElseThrow(() -> new BookDoesNotExistsException("Book not found"));
-        if (updateBookDTO.getTitle() != null) {
-            book.setTitle(updateBookDTO.getTitle());
+        if (updateBookDto.getTitle() != null) {
+            book.setTitle(updateBookDto.getTitle());
         }
-        if (updateBookDTO.getAuthor() != null) {
-            book.setAuthor(updateBookDTO.getAuthor());
+        if (updateBookDto.getAuthor() != null) {
+            book.setAuthor(updateBookDto.getAuthor());
         }
-        if (updateBookDTO.getGenre() != null) {
-            book.setGenre(updateBookDTO.getGenre());
+        if (updateBookDto.getGenre() != null) {
+            book.setGenre(updateBookDto.getGenre());
         }
-        if (updateBookDTO.getDescription() != null) {
-            book.setDescription(updateBookDTO.getDescription());
+        if (updateBookDto.getDescription() != null) {
+            book.setDescription(updateBookDto.getDescription());
         }
         bookRepository.save(book);
     }
 
-    public Page<Book> getBooks(BookGenre genre, Double ratingMin, int page, int size, String sort) {
-        // Создаем объект Sort с учетом переданных параметров сортировки
+    public Page<BookResponse> getBooks(BookGenre genre, Double ratingMin, int page, int size, String sort) {
         Sort sortOrder = parseAndValidateSort(sort);
-        // Создаем объект Pageable для пагинации
         Pageable pageable = PageRequest.of(page, size, sortOrder);
-        // Если передан фильтр по жанру или минимальному рейтингу, фильтруем по этим параметрам
-        if (genre != null || ratingMin != null) {
-            return bookRepository.findBooksByFilters(genre, ratingMin, pageable);
-        } else {
-            return bookRepository.findAll(pageable);  // В противном случае возвращаем все книги
-        }
+
+        Page<Book> books = (genre != null || ratingMin != null) ?
+                bookRepository.findBooksByFilters(genre, ratingMin, pageable) :
+                bookRepository.findAll(pageable);
+
+        List<BookResponse> bookResponses = books.getContent().stream()
+                .map(this::convertToBookResponse)
+                .collect(Collectors.toList());
+
+        return new PageImpl<>(bookResponses, pageable, books.getTotalElements());
+    }
+
+    public List<BookResponse> getRecommendedBooks(User user) {
+        List<BookGenre> genres = userBookService.getTopThreeGenres(user.getId());
+        List<Book> books = bookRepository.findRecommendedBooks(user.getId(), genres);
+        return books.stream()
+                .map(this::convertToBookResponse)
+                .collect(Collectors.toList());
+    }
+
+    private BookResponse convertToBookResponse(Book book) {
+        return new BookResponse(
+                book.getTitle(),
+                book.getAuthor(),
+                book.getGenre(),
+                book.getDescription(),
+                book.getIsbn(),
+                book.getReviews() != null ? book.getReviews().stream()
+                        .map(review -> new ReviewResponse(review.getText(), review.getRating()))
+                        .collect(Collectors.toList()) : Collections.emptyList()
+        );
     }
 
     private Sort parseAndValidateSort(String sort) {

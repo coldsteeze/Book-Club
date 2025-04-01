@@ -12,7 +12,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserBook {
-
     @Id
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,6 +28,4 @@ public class UserBook {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private BookStatus status;
-
-
 }

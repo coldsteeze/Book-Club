@@ -53,8 +53,19 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
 
-    @ExceptionHandler(BookDoesNotExistsException.class)
+    @ExceptionHandler(ReviewDoesNotExistsException.class)
     public ResponseEntity<ApiError> handleReviewDoesNotExists(ReviewDoesNotExistsException e) {
+        ApiError error = ApiError.builder()
+                .status(HttpStatus.NOT_FOUND.value())
+                .error("Conflict")
+                .message(e.getMessage())
+                .timestamp(LocalDateTime.now())
+                .build();
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
+    }
+
+    @ExceptionHandler(UserBookNotFoundException.class)
+    public ResponseEntity<ApiError> handleBookUserNotFound(UserBookNotFoundException e) {
         ApiError error = ApiError.builder()
                 .status(HttpStatus.NOT_FOUND.value())
                 .error("Conflict")

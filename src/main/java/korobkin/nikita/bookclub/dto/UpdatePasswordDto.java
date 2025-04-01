@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UpdatePasswordDTO {
+public class UpdatePasswordDto {
     @NotBlank(message = "Password must not be blank")
     @Size(min = 8, max = 100, message = "Password must be between 8 and 100 characters long")
     private String oldPassword;

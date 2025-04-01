@@ -12,7 +12,7 @@ import java.util.Collections;
 
 @Getter
 @AllArgsConstructor
-public class CustomUserDetails implements UserDetails {
+public class UserDetailsImpl implements UserDetails {
     private final User user;
 
     @Override
@@ -49,5 +49,4 @@ public class CustomUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
-
 }

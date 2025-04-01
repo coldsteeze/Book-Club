@@ -1,7 +1,7 @@
 package korobkin.nikita.bookclub.service;
 
-import korobkin.nikita.bookclub.dto.ReviewDTO;
-import korobkin.nikita.bookclub.dto.UpdateReviewDTO;
+import korobkin.nikita.bookclub.dto.ReviewDto;
+import korobkin.nikita.bookclub.dto.UpdateReviewDto;
 import korobkin.nikita.bookclub.entity.Book;
 import korobkin.nikita.bookclub.entity.Review;
 import korobkin.nikita.bookclub.entity.User;
@@ -11,7 +11,6 @@ import korobkin.nikita.bookclub.exception.ReviewDoesNotExistsException;
 import korobkin.nikita.bookclub.repository.BookRepository;
 import korobkin.nikita.bookclub.repository.ReviewRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
@@ -24,9 +23,8 @@ import java.time.LocalDateTime;
 public class ReviewService {
     private final ReviewRepository reviewRepository;
     private final BookRepository bookRepository;
-    private final ModelMapper modelMapper;
 
-    public void createReview(ReviewDTO reviewDTO, User user) {
+    public void createReview(ReviewDto reviewDTO, User user) {
         Book book = bookRepository.findById(reviewDTO.getBookId())
                 .orElseThrow(() -> new BookDoesNotExistsException("Book doesn't exist"));
 
@@ -49,14 +47,14 @@ public class ReviewService {
         bookRepository.save(book);
     }
 
-    public void updateReview(int reviewId, UpdateReviewDTO updateReviewDTO, User user) {
+    public void updateReview(int reviewId, UpdateReviewDto updateReviewDto, User user) {
         Review review = reviewRepository.findByIdAndUserId(reviewId, user.getId())
                 .orElseThrow(() -> new ReviewDoesNotExistsException("Review doesn't exist"));
-        if (StringUtils.hasText(updateReviewDTO.getText())) {
-            review.setText(updateReviewDTO.getText());
+        if (StringUtils.hasText(updateReviewDto.getText())) {
+            review.setText(updateReviewDto.getText());
         }
-        if (updateReviewDTO.getRating() != null) {
-            review.setRating(updateReviewDTO.getRating());
+        if (updateReviewDto.getRating() != null) {
+            review.setRating(updateReviewDto.getRating());
         }
         reviewRepository.save(review);
     }

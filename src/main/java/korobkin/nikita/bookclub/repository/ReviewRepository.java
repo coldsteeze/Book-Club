@@ -14,8 +14,10 @@ public interface ReviewRepository extends JpaRepository<Review, Integer> {
     Float calculateAverageRatingForBook(@Param("bookId") int bookId);
 
     Boolean existsByBookIdAndUserId(int bookId, int userId);
+
     int countReviewsByUserId(int userId);
 
     Optional<Review> findByBookIdAndUserId(int bookId, int userId);
+
     Optional<Review> findByIdAndUserId(int id, int userId);
 }

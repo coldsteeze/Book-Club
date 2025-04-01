@@ -1,8 +1,8 @@
 package korobkin.nikita.bookclub.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import korobkin.nikita.bookclub.entity.enums.BookGenre;
 import lombok.AllArgsConstructor;
@@ -12,12 +12,11 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BookDTO {
-    @NotBlank(message = "Title must not be blank")
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class UpdateBookDto {
     @Size(max = 255, message = "Title must not exceed 255 characters")
     private String title;
 
-    @NotBlank(message = "Author must not be blank")
     @Size(max = 255, message = "Author must not exceed 255 characters")
     private String author;
 

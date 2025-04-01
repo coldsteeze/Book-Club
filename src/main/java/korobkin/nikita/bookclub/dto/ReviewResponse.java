@@ -5,6 +5,8 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class JwtResponseDTO {
-    private String token;
+public class ReviewResponse {
+    private String text;
+
+    private Float rating;
 }

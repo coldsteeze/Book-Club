@@ -1,10 +1,10 @@
 package korobkin.nikita.bookclub.controller;
 
 import jakarta.validation.Valid;
-import korobkin.nikita.bookclub.dto.UpdatePasswordDTO;
-import korobkin.nikita.bookclub.dto.UpdateUsernameDTO;
-import korobkin.nikita.bookclub.dto.UserProfileDTO;
-import korobkin.nikita.bookclub.security.CustomUserDetails;
+import korobkin.nikita.bookclub.dto.UpdatePasswordDto;
+import korobkin.nikita.bookclub.dto.UpdateUsernameDto;
+import korobkin.nikita.bookclub.dto.UserProfileDto;
+import korobkin.nikita.bookclub.security.UserDetailsImpl;
 import korobkin.nikita.bookclub.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -20,15 +20,15 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping("/profile")
-    public ResponseEntity<UserProfileDTO> getProfile(@AuthenticationPrincipal CustomUserDetails userDetails) {
-        UserProfileDTO userProfileDTO = userService.getUserProfile(userDetails.getUser());
-        return userProfileDTO != null ? ResponseEntity.ok(userProfileDTO) : ResponseEntity.notFound().build();
+    public ResponseEntity<UserProfileDto> getProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
+        UserProfileDto userProfileDto = userService.getUserProfile(userDetails.getUser());
+        return userProfileDto != null ? ResponseEntity.ok(userProfileDto) : ResponseEntity.notFound().build();
     }
 
     @PutMapping("/profile/username")
-    public ResponseEntity<String> updateProfileUsername(@AuthenticationPrincipal CustomUserDetails userDetails,
-                                                        @RequestBody @Valid UpdateUsernameDTO updateUsernameDTO) {
-        userService.updateProfileUsername(updateUsernameDTO.getUsername(), userDetails.getUser());
+    public ResponseEntity<String> updateProfileUsername(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                                        @RequestBody @Valid UpdateUsernameDto updateUsernameDto) {
+        userService.updateProfileUsername(updateUsernameDto.getUsername(), userDetails.getUser());
         SecurityContextHolder.clearContext();
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                 .header("Token-Expired", "true")
@@ -36,9 +36,9 @@ public class UserController {
     }
 
     @PutMapping("/change-password")
-    public ResponseEntity<String> updateProfilePassword(@AuthenticationPrincipal CustomUserDetails userDetails,
-                                                        @RequestBody @Valid UpdatePasswordDTO updatePasswordDTO) {
-        userService.updateProfilePassword(updatePasswordDTO.getOldPassword(), updatePasswordDTO.getNewPassword(),
+    public ResponseEntity<String> updateProfilePassword(@AuthenticationPrincipal UserDetailsImpl userDetails,
+                                                        @RequestBody @Valid UpdatePasswordDto updatePasswordDto) {
+        userService.updateProfilePassword(updatePasswordDto.getOldPassword(), updatePasswordDto.getNewPassword(),
                 userDetails.getUser());
         SecurityContextHolder.clearContext();
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
@@ -47,7 +47,7 @@ public class UserController {
     }
 
     @DeleteMapping("/profile")
-    public ResponseEntity<String> deleteProfile(@AuthenticationPrincipal CustomUserDetails userDetails) {
+    public ResponseEntity<String> deleteProfile(@AuthenticationPrincipal UserDetailsImpl userDetails) {
         userService.deleteProfile(userDetails.getUser());
         SecurityContextHolder.clearContext();
         return ResponseEntity.ok("Profile deleted successfully");

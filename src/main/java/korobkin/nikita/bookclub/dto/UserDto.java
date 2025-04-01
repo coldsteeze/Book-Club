@@ -7,7 +7,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class AuthenticationDTO {
+public class UserDto {
     @NotBlank(message = "Username must not be blank")
     @Size(min = 3, max = 15, message = "Username must be between 3 and 15 characters long")
     private String username;

@@ -1,9 +1,9 @@
 package korobkin.nikita.bookclub.controller;
 
 import jakarta.validation.Valid;
-import korobkin.nikita.bookclub.dto.AuthenticationDTO;
-import korobkin.nikita.bookclub.dto.JwtResponseDTO;
-import korobkin.nikita.bookclub.dto.UserDTO;
+import korobkin.nikita.bookclub.dto.AuthenticationDto;
+import korobkin.nikita.bookclub.dto.JwtResponseDto;
+import korobkin.nikita.bookclub.dto.UserDto;
 import korobkin.nikita.bookclub.service.AuthService;
 import korobkin.nikita.bookclub.service.UserService;
 import lombok.AllArgsConstructor;
@@ -20,15 +20,15 @@ public class AuthController {
     private final UserService userService;
     private final AuthService authService;
 
-    @PostMapping("/registration")
-    public ResponseEntity<JwtResponseDTO> register(@RequestBody @Valid UserDTO userDTO) {
-        String token = userService.register(userDTO);
-        return ResponseEntity.ok(new JwtResponseDTO(token));
+    @PostMapping("/register")
+    public ResponseEntity<JwtResponseDto> register(@RequestBody @Valid UserDto userDto) {
+        String token = userService.register(userDto);
+        return ResponseEntity.ok(new JwtResponseDto(token));
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtResponseDTO> login(@RequestBody @Valid AuthenticationDTO authenticationDTO) {
-        String token = authService.authenticate(authenticationDTO);
-        return ResponseEntity.ok(new JwtResponseDTO(token));
+    public ResponseEntity<JwtResponseDto> login(@RequestBody @Valid AuthenticationDto authenticationDto) {
+        String token = authService.authenticate(authenticationDto);
+        return ResponseEntity.ok(new JwtResponseDto(token));
     }
 }

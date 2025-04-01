@@ -9,6 +9,8 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface BookRepository extends JpaRepository<Book, Integer> {
     @Query("SELECT b FROM Book b WHERE "
@@ -19,6 +21,10 @@ public interface BookRepository extends JpaRepository<Book, Integer> {
             @Param("ratingMin") Double ratingMin,
             Pageable pageable
     );
+
+    @Query("SELECT b FROM Book b WHERE b.genre IN :genres AND b.id NOT IN "
+            + "(SELECT ub.book.id FROM UserBook ub WHERE ub.user.id = :userId)")
+    List<Book> findRecommendedBooks(@Param("userId") int userId, @Param("genres") List<BookGenre> genres);
 
     Boolean existsByTitle(String title);
 }
