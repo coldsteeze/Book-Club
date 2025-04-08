@@ -1,0 +1,318 @@
+2025-04-08 16:30:16,940 INFO korobkin.nikita.bookclub.BookClubApplication [main] Starting BookClubApplication using Java 22.0.1 with PID 24472 (C:\Users\Coldsteeze\Desktop\Book-Club\target\classes started by Coldsteeze in C:\Users\Coldsteeze\Desktop\Book-Club)
+2025-04-08 16:30:16,947 INFO korobkin.nikita.bookclub.BookClubApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-04-08 16:30:17,610 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-08 16:30:17,680 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 60 ms. Found 4 JPA repository interfaces.
+2025-04-08 16:30:18,164 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-04-08 16:30:18,179 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2025-04-08 16:30:18,180 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-08 16:30:18,238 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2025-04-08 16:30:18,238 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1252 ms
+2025-04-08 16:30:18,363 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-08 16:30:18,431 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-04-08 16:30:18,474 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-04-08 16:30:18,778 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-08 16:30:18,809 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-04-08 16:30:19,266 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@54387873
+2025-04-08 16:30:19,267 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-04-08 16:30:19,346 WARN org.hibernate.orm.deprecation [main] HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-08 16:30:19,347 WARN org.hibernate.orm.deprecation [main] HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-08 16:30:19,362 INFO org.hibernate.orm.connections.pooling [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-08 16:30:20,350 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-08 16:30:20,506 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-08 16:30:20,855 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-08 16:30:21,482 INFO org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-04-08 16:30:21,734 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-08 16:30:22,201 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-04-08 16:30:22,208 INFO korobkin.nikita.bookclub.BookClubApplication [main] Started BookClubApplication in 5.714 seconds (process running for 6.365)
+2025-04-08 16:32:19,275 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-4] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-08 16:32:19,275 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-4] Initializing Servlet 'dispatcherServlet'
+2025-04-08 16:32:19,277 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-4] Completed initialization in 2 ms
+2025-04-08 16:32:19,514 INFO korobkin.nikita.bookclub.controller.AuthController [http-nio-8080-exec-4] Attempting to register a new user with username: Nikita_Korobkin
+2025-04-08 16:32:19,899 INFO korobkin.nikita.bookclub.service.UserService [http-nio-8080-exec-4] User 'Nikita_Korobkin' registered successfully
+2025-04-08 16:32:32,937 INFO korobkin.nikita.bookclub.controller.AuthController [http-nio-8080-exec-3] Attempting to register a new user with username: Nikita_Korobkin
+2025-04-08 16:32:32,943 WARN korobkin.nikita.bookclub.service.UserService [http-nio-8080-exec-3] Attempt to register with existing username: Nikita_Korobkin
+2025-04-08 16:32:32,948 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-3] User already exists: User with this username already exists
+2025-04-08 16:32:57,345 INFO korobkin.nikita.bookclub.controller.AuthController [http-nio-8080-exec-2] User login attempt with username: Nikita_Korobkin
+2025-04-08 16:32:57,645 INFO korobkin.nikita.bookclub.service.AuthService [http-nio-8080-exec-2] User Nikita_Korobkin Authentication successful
+2025-04-08 16:33:25,996 INFO korobkin.nikita.bookclub.controller.AuthController [http-nio-8080-exec-5] User login attempt with username: Nikita_Korobkin
+2025-04-08 16:33:26,140 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-5] User authentication failed: Invalid username or password
+2025-04-08 16:37:44,251 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-1] Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `korobkin.nikita.bookclub.entity.enums.BookGenre` from String "Fantastic": not one of the values accepted for Enum class: [NON_FICTION, BIOGRAPHY, FICTION, FANTASY, SCIENCE_FICTION, HORROR, ROMANCE, HISTORY, MYSTERY]]
+2025-04-08 16:38:07,246 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `korobkin.nikita.bookclub.entity.enums.BookGenre` from String "Fantasy": not one of the values accepted for Enum class: [NON_FICTION, BIOGRAPHY, FICTION, FANTASY, SCIENCE_FICTION, HORROR, ROMANCE, HISTORY, MYSTERY]]
+2025-04-08 16:38:15,132 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-3] Adding new book: test book for Nikita_Korobkin
+2025-04-08 16:38:15,133 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-3] Creating new book with title: test book for Nikita_Korobkin
+2025-04-08 16:38:15,172 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-3] Book 'test book for Nikita_Korobkin' created successfully
+2025-04-08 16:39:12,468 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-2] Getting book by id: 1
+2025-04-08 16:39:12,501 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-2] Book with id 1 found
+2025-04-08 16:39:37,935 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-5] Getting book by id: 3
+2025-04-08 16:39:37,939 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-5] Book with id 3 found
+2025-04-08 16:39:45,176 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-6] Getting book by id: 4
+2025-04-08 16:39:45,181 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-6] Book does not exist: Book not found
+2025-04-08 16:40:38,259 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-9] Updating book with id: 3
+2025-04-08 16:40:38,268 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-9] Book with id 3 updated successfully
+2025-04-08 16:40:51,184 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-8] Updating book with id: 4
+2025-04-08 16:40:51,190 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-8] Book does not exist: Book not found
+2025-04-08 16:41:08,629 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-7] Deleting book with id: 4
+2025-04-08 16:41:08,635 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-7] Book does not exist: Book not found
+2025-04-08 16:41:20,108 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-10] Deleting book with id: 2
+2025-04-08 16:41:20,163 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-10] Book with id Анна Каренина deleted successfully
+2025-04-08 16:41:20,958 WARN org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-10] SQL Error: 1451, SQLState: 23000
+2025-04-08 16:41:20,958 ERROR org.hibernate.engine.jdbc.spi.SqlExceptionHelper [http-nio-8080-exec-10] Cannot delete or update a parent row: a foreign key constraint fails (`bookclub`.`review`, CONSTRAINT `FK70yrt09r4r54tcgkrwbeqenbs` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`))
+2025-04-08 16:41:20,971 ERROR org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/].[dispatcherServlet] [http-nio-8080-exec-10] Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed: org.springframework.dao.DataIntegrityViolationException: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`bookclub`.`review`, CONSTRAINT `FK70yrt09r4r54tcgkrwbeqenbs` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`))] [delete from book where id=?]; SQL [delete from book where id=?]; constraint [null]] with root cause
+java.sql.SQLIntegrityConstraintViolationException: Cannot delete or update a parent row: a foreign key constraint fails (`bookclub`.`review`, CONSTRAINT `FK70yrt09r4r54tcgkrwbeqenbs` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`))
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:109)
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:988)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1166)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1101)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1467)
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1084)
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
+	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:194)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.performNonBatchedMutation(AbstractMutationExecutor.java:134)
+	at org.hibernate.engine.jdbc.mutation.internal.MutationExecutorSingleNonBatched.performNonBatchedOperations(MutationExecutorSingleNonBatched.java:55)
+	at org.hibernate.engine.jdbc.mutation.internal.AbstractMutationExecutor.execute(AbstractMutationExecutor.java:55)
+	at org.hibernate.persister.entity.mutation.AbstractDeleteCoordinator.doStaticDelete(AbstractDeleteCoordinator.java:279)
+	at org.hibernate.persister.entity.mutation.AbstractDeleteCoordinator.delete(AbstractDeleteCoordinator.java:87)
+	at org.hibernate.action.internal.EntityDeleteAction.execute(EntityDeleteAction.java:131)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:644)
+	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:511)
+	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:414)
+	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:41)
+	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:127)
+	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1429)
+	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:491)
+	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:2354)
+	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:1978)
+	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:439)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:169)
+	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:267)
+	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
+	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:562)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:795)
+	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:758)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:698)
+	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:416)
+	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:119)
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:184)
+	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:727)
+	at korobkin.nikita.bookclub.service.BookService$$SpringCGLIB$$0.deleteBook(<generated>)
+	at korobkin.nikita.bookclub.controller.BookController.deleteBook(BookController.java:55)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:257)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:190)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:118)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:986)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:891)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1088)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:978)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1014)
+	at org.springframework.web.servlet.FrameworkServlet.doDelete(FrameworkServlet.java:936)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:596)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:885)
+	at jakarta.servlet.http.HttpServlet.service(HttpServlet.java:658)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:195)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:51)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:110)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:108)
+	at org.springframework.security.web.FilterChainProxy.lambda$doFilterInternal$3(FilterChainProxy.java:231)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:365)
+	at org.springframework.security.web.access.intercept.AuthorizationFilter.doFilter(AuthorizationFilter.java:101)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:126)
+	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:120)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:131)
+	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:85)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:100)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:179)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at korobkin.nikita.bookclub.security.JwtFilter.doFilterInternal(JwtFilter.java:49)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:107)
+	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:93)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:90)
+	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:75)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:82)
+	at org.springframework.security.web.context.SecurityContextHolderFilter.doFilter(SecurityContextHolderFilter.java:69)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:62)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.session.DisableEncodeUrlFilter.doFilterInternal(DisableEncodeUrlFilter.java:42)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:374)
+	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:233)
+	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:191)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.servlet.handler.HandlerMappingIntrospector.lambda$createCacheFilter$3(HandlerMappingIntrospector.java:243)
+	at org.springframework.web.filter.CompositeFilter$VirtualFilterChain.doFilter(CompositeFilter.java:113)
+	at org.springframework.web.filter.CompositeFilter.doFilter(CompositeFilter.java:74)
+	at org.springframework.security.config.annotation.web.configuration.WebMvcSecurityConfiguration$CompositeFilterChainProxy.doFilter(WebMvcSecurityConfiguration.java:238)
+	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:362)
+	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:278)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:91)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:116)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:164)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:140)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:167)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:90)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:483)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:115)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:93)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:344)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:397)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:63)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:905)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1741)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:52)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1190)
+	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:63)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-04-08 16:45:03,193 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-08 16:45:03,204 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-04-08 16:45:03,211 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-08 16:45:03,214 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-04-08 16:45:03,224 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.
+2025-04-08 16:45:07,420 INFO korobkin.nikita.bookclub.BookClubApplication [main] Starting BookClubApplication using Java 22.0.1 with PID 23832 (C:\Users\Coldsteeze\Desktop\Book-Club\target\classes started by Coldsteeze in C:\Users\Coldsteeze\Desktop\Book-Club)
+2025-04-08 16:45:07,421 INFO korobkin.nikita.bookclub.BookClubApplication [main] No active profile set, falling back to 1 default profile: "default"
+2025-04-08 16:45:07,972 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2025-04-08 16:45:08,034 INFO org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 55 ms. Found 4 JPA repository interfaces.
+2025-04-08 16:45:08,463 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port 8080 (http)
+2025-04-08 16:45:08,476 INFO org.apache.catalina.core.StandardService [main] Starting service [Tomcat]
+2025-04-08 16:45:08,476 INFO org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/10.1.34]
+2025-04-08 16:45:08,524 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [main] Initializing Spring embedded WebApplicationContext
+2025-04-08 16:45:08,524 INFO org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1069 ms
+2025-04-08 16:45:08,650 INFO org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default]
+2025-04-08 16:45:08,713 INFO org.hibernate.Version [main] HHH000412: Hibernate ORM core version 6.6.4.Final
+2025-04-08 16:45:08,749 INFO org.hibernate.cache.internal.RegionFactoryInitiator [main] HHH000026: Second-level cache disabled
+2025-04-08 16:45:08,999 INFO org.springframework.orm.jpa.persistenceunit.SpringPersistenceUnitInfo [main] No LoadTimeWeaver setup: ignoring JPA class transformer
+2025-04-08 16:45:09,027 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Starting...
+2025-04-08 16:45:09,358 INFO com.zaxxer.hikari.pool.HikariPool [main] HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@48ee3c2d
+2025-04-08 16:45:09,359 INFO com.zaxxer.hikari.HikariDataSource [main] HikariPool-1 - Start completed.
+2025-04-08 16:45:09,398 WARN org.hibernate.orm.deprecation [main] HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2025-04-08 16:45:09,399 WARN org.hibernate.orm.deprecation [main] HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2025-04-08 16:45:09,413 INFO org.hibernate.orm.connections.pooling [main] HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 8.0
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2025-04-08 16:45:10,320 INFO org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2025-04-08 16:45:10,392 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default'
+2025-04-08 16:45:10,674 INFO org.springframework.data.jpa.repository.query.QueryEnhancerFactory [main] Hibernate is in classpath; If applicable, HQL parser will be used.
+2025-04-08 16:45:11,246 INFO org.springframework.security.config.annotation.authentication.configuration.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer [main] Global AuthenticationManager configured with UserDetailsService bean with name userDetailsServiceImpl
+2025-04-08 16:45:11,487 WARN org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2025-04-08 16:45:11,872 INFO org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port 8080 (http) with context path '/'
+2025-04-08 16:45:11,879 INFO korobkin.nikita.bookclub.BookClubApplication [main] Started BookClubApplication in 4.86 seconds (process running for 5.427)
+2025-04-08 16:45:19,353 INFO org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/] [http-nio-8080-exec-6] Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-04-08 16:45:19,354 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] Initializing Servlet 'dispatcherServlet'
+2025-04-08 16:45:19,356 INFO org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-6] Completed initialization in 2 ms
+2025-04-08 16:45:19,631 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-6] Deleting book with id: 3
+2025-04-08 16:45:19,687 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-6] Book with id test book for Nikita_Korobkin deleted successfully
+2025-04-08 16:45:24,318 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-10] Deleting book with id: 2
+2025-04-08 16:45:24,348 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-10] Book with id Анна Каренина deleted successfully
+2025-04-08 16:46:47,568 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-7] Adding new book: test book for Nikita_Korobkin
+2025-04-08 16:46:47,571 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-7] Creating new book with title: test book for Nikita_Korobkin
+2025-04-08 16:46:47,628 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-7] Book 'test book for Nikita_Korobkin' created successfully
+2025-04-08 16:51:33,910 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1m24s360ms346µs800ns).
+2025-04-08 16:51:55,051 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'POST' is not supported]
+2025-04-08 16:52:00,727 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-5] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:52:00,763 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-5] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:52:00,780 WARN org.springframework.data.web.config.SpringDataJacksonConfiguration$PageModule$WarningLoggingModifier [http-nio-8080-exec-5] Serializing PageImpl instances as-is is not supported, meaning that there is no guarantee about the stability of the resulting JSON structure!
+	For a stable JSON structure, please use Spring Data's PagedModel (globally via @EnableSpringDataWebSupport(pageSerializationMode = VIA_DTO))
+	or Spring HATEOAS and Spring Data's PagedResourcesAssembler as documented in https://docs.spring.io/spring-data/commons/reference/repositories/core-extensions.html#core.web.pageables.
+
+2025-04-08 16:52:37,280 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-1] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:52:37,311 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-1] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:52:46,189 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-6] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:52:46,202 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-6] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:53:00,125 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-10] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:53:00,151 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-10] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:53:05,995 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-9] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:53:05,999 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-9] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:54:35,611 INFO korobkin.nikita.bookclub.controller.ReviewController [http-nio-8080-exec-7] User 'Nikita_Korobkin' is adding a review: review for book with title Nikita_Korobkin
+2025-04-08 16:54:35,614 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-7] User 'Nikita_Korobkin' is creating review for book ID 4: review for book with title Nikita_Korobkin
+2025-04-08 16:54:35,664 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-7] Review created successfully for book with ID 4 by user 'Nikita_Korobkin'
+2025-04-08 16:55:19,534 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-8] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:55:19,542 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-8] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:55:28,497 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-4] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'genre': Failed to convert value of type 'java.lang.String' to required type 'korobkin.nikita.bookclub.entity.enums.BookGenre'; Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam korobkin.nikita.bookclub.entity.enums.BookGenre] for value [FANTASY?ratingMin=4.1]]
+2025-04-08 16:55:33,201 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-5] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'genre': Failed to convert value of type 'java.lang.String' to required type 'korobkin.nikita.bookclub.entity.enums.BookGenre'; Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam korobkin.nikita.bookclub.entity.enums.BookGenre] for value [FANTASY?ratingMin=4]]
+2025-04-08 16:55:47,955 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-1] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:55:47,964 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-1] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:55:52,684 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-6] Getting books with page: 0, size: 10, sort: null
+2025-04-08 16:55:52,686 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-6] Successfully retrieved books with page: 0, size: 10, sort: null
+2025-04-08 16:56:53,014 INFO korobkin.nikita.bookclub.controller.ReviewController [http-nio-8080-exec-9] User 'Nikita_Korobkin' is updating review with ID 11: updated review for book with title Nikita_Korobkin
+2025-04-08 16:56:53,019 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-9] User 'Nikita_Korobkin' is updating review with ID 11
+2025-04-08 16:56:53,036 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-9] Review with ID 11 updated successfully for user 'Nikita_Korobkin'
+2025-04-08 16:57:15,598 INFO korobkin.nikita.bookclub.controller.ReviewController [http-nio-8080-exec-2] User 'Nikita_Korobkin' is updating review with ID 12: updated review for book with title Nikita_Korobkin
+2025-04-08 16:57:15,600 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-2] User 'Nikita_Korobkin' is updating review with ID 12
+2025-04-08 16:57:15,612 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-2] Review does not exist: Review doesn't exist
+2025-04-08 16:57:37,653 INFO korobkin.nikita.bookclub.controller.ReviewController [http-nio-8080-exec-7] User 'Nikita_Korobkin' is deleting review with ID 10
+2025-04-08 16:57:37,655 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-7] User 'Nikita_Korobkin' is deleting review with ID 10
+2025-04-08 16:57:37,663 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-7] Review does not exist: Review doesn't exist
+2025-04-08 16:57:44,832 INFO korobkin.nikita.bookclub.controller.ReviewController [http-nio-8080-exec-8] User 'Nikita_Korobkin' is deleting review with ID 11
+2025-04-08 16:57:44,834 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-8] User 'Nikita_Korobkin' is deleting review with ID 11
+2025-04-08 16:57:44,845 INFO korobkin.nikita.bookclub.service.ReviewService [http-nio-8080-exec-8] Review with ID 11 deleted successfully by user 'Nikita_Korobkin'
+2025-04-08 16:58:49,043 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-5] User 'Nikita_Korobkin' is adding book with ID 4 and status 'READ' to their collection
+2025-04-08 16:58:49,052 INFO korobkin.nikita.bookclub.service.UserBookService [http-nio-8080-exec-5] User 'Nikita_Korobkin' is adding book 'test book for Nikita_Korobkin' to their collection with status 'READ'
+2025-04-08 16:59:14,282 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-6] User 'Nikita_Korobkin' is adding book with ID 5 and status 'READ' to their collection
+2025-04-08 16:59:14,290 WARN korobkin.nikita.bookclub.exception.GlobalExceptionHandler [http-nio-8080-exec-6] Book does not exist: Book doesn't exist
+2025-04-08 16:59:31,516 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-10] User 'Nikita_Korobkin' is fetching their books with status 'ALL'
+2025-04-08 16:59:31,519 INFO korobkin.nikita.bookclub.service.UserBookService [http-nio-8080-exec-10] User '13' is fetching books with status 'ALL' from their collection
+2025-04-08 16:59:54,978 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-9] User 'Nikita_Korobkin' is fetching their books with status 'READ'
+2025-04-08 16:59:54,979 INFO korobkin.nikita.bookclub.service.UserBookService [http-nio-8080-exec-9] User '13' is fetching books with status 'READ' from their collection
+2025-04-08 17:00:36,556 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-3] User 'Nikita_Korobkin' is updating the status of book with ID 4 to 'WANT_TO_READ'
+2025-04-08 17:00:36,557 INFO korobkin.nikita.bookclub.service.UserBookService [http-nio-8080-exec-3] User '13' is updating book status for book ID '4' to 'WANT_TO_READ'
+2025-04-08 17:00:40,735 WARN org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolver [http-nio-8080-exec-2] Resolved [org.springframework.web.method.annotation.MethodArgumentTypeMismatchException: Method parameter 'bookStatus': Failed to convert value of type 'java.lang.String' to required type 'korobkin.nikita.bookclub.entity.enums.BookStatus'; Failed to convert from type [java.lang.String] to type [@org.springframework.web.bind.annotation.RequestParam korobkin.nikita.bookclub.entity.enums.BookStatus] for value [WANT_TO_READR]]
+2025-04-08 17:01:06,853 INFO korobkin.nikita.bookclub.controller.UserBookController [http-nio-8080-exec-7] User 'Nikita_Korobkin' is updating the status of book with ID 4 to 'READ'
+2025-04-08 17:01:06,853 INFO korobkin.nikita.bookclub.service.UserBookService [http-nio-8080-exec-7] User '13' is updating book status for book ID '4' to 'READ'
+2025-04-08 17:01:46,032 INFO korobkin.nikita.bookclub.controller.BookController [http-nio-8080-exec-8] Adding new book: test book 2 for Nikita_Korobkin
+2025-04-08 17:01:46,034 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-8] Creating new book with title: test book 2 for Nikita_Korobkin
+2025-04-08 17:01:46,055 INFO korobkin.nikita.bookclub.service.BookService [http-nio-8080-exec-8] Book 'test book 2 for Nikita_Korobkin' created successfully
+2025-04-08 17:16:30,517 WARN com.zaxxer.hikari.pool.HikariPool [HikariPool-1 housekeeper] HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=14m26s428ms397µs800ns).
+2025-04-08 17:30:06,208 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [SpringApplicationShutdownHook] Commencing graceful shutdown. Waiting for active requests to complete
+2025-04-08 17:30:06,236 INFO org.springframework.boot.web.embedded.tomcat.GracefulShutdown [tomcat-shutdown] Graceful shutdown complete
+2025-04-08 17:30:06,245 INFO org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [SpringApplicationShutdownHook] Closing JPA EntityManagerFactory for persistence unit 'default'
+2025-04-08 17:30:06,251 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown initiated...
+2025-04-08 17:30:06,263 INFO com.zaxxer.hikari.HikariDataSource [SpringApplicationShutdownHook] HikariPool-1 - Shutdown completed.

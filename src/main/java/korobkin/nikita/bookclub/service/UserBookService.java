@@ -12,6 +12,7 @@ import korobkin.nikita.bookclub.repository.BookRepository;
 import korobkin.nikita.bookclub.repository.UserBookRepository;
 import korobkin.nikita.bookclub.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional
 @AllArgsConstructor
@@ -31,7 +33,12 @@ public class UserBookService {
 
     public void addBookToUser(int userId, int bookId, BookStatus bookStatus) {
         User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("User not found"));
-        Book book = bookRepository.findById(bookId).orElseThrow(() -> new BookDoesNotExistsException("Book doesn't exits"));
+        Book book = bookRepository.findById(bookId).orElseThrow(() ->
+                new BookDoesNotExistsException("Book doesn't exist")
+        );
+
+        log.info("User '{}' is adding book '{}' to their collection with status '{}'",
+                user.getUsername(), book.getTitle(), bookStatus);
 
         if (userBookRepository.findByUserIdAndBookId(userId, bookId).isPresent()) {
             throw new RuntimeException("User book already exists");
@@ -46,25 +53,39 @@ public class UserBookService {
     }
 
     public List<BookDto> getBooksByFilter(int userId, BookStatus bookStatus) {
-        List<Book> books = (bookStatus != null) ? userBookRepository.findBooksByBookStatusAndUserId(userId, bookStatus) : userBookRepository.findBooksByUserId(userId);
+        log.info("User '{}' is fetching books with status '{}' from their collection",
+                userId, bookStatus != null ? bookStatus : "ALL");
 
-        return books.stream().map(book -> modelMapper.map(book, BookDto.class)).collect(Collectors.toList());
+        List<Book> books = (bookStatus != null) ?
+                userBookRepository.findBooksByBookStatusAndUserId(userId, bookStatus) :
+                userBookRepository.findBooksByUserId(userId);
+
+        return books.stream()
+                .map(book -> modelMapper.map(book, BookDto.class))
+                .collect(Collectors.toList());
     }
 
     public void updateUserBookStatus(int userId, int bookId, BookStatus bookStatus) {
-        UserBook userBook = userBookRepository.findBookByUserIdAndBookId(userId, bookId).orElseThrow(() -> new UserBookNotFoundException("User book not found"));
+        log.info("User '{}' is updating book status for book ID '{}' to '{}'",
+                userId, bookId, bookStatus);
+
+        UserBook userBook = userBookRepository.findBookByUserIdAndBookId(userId, bookId)
+                .orElseThrow(() -> new UserBookNotFoundException("User book not found"));
         userBook.setStatus(bookStatus);
         userBookRepository.save(userBook);
     }
 
     public void deleteUserBook(int userId, int bookId) {
-        UserBook userBook = userBookRepository.findBookByUserIdAndBookId(userId, bookId).orElseThrow(() -> new UserBookNotFoundException("User book not found"));
+        log.info("User '{}' is deleting book with ID '{}' from their collection",
+                userId, bookId);
+
+        UserBook userBook = userBookRepository.findBookByUserIdAndBookId(userId, bookId)
+                .orElseThrow(() -> new UserBookNotFoundException("User book not found"));
         userBookRepository.delete(userBook);
     }
 
     public List<BookGenre> getTopThreeGenres(int userId) {
         return userBookRepository.findTopGenresByUserId(userId, PageRequest.of(0, 3)).getContent();
     }
-
-
 }
+

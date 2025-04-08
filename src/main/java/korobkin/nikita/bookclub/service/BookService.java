@@ -11,6 +11,7 @@ import korobkin.nikita.bookclub.exception.BookAlreadyExistsException;
 import korobkin.nikita.bookclub.exception.BookDoesNotExistsException;
 import korobkin.nikita.bookclub.repository.BookRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
@@ -20,6 +21,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @Transactional
 @AllArgsConstructor
@@ -30,7 +32,9 @@ public class BookService {
     private final UserBookService userBookService;
 
     public void createBook(BookDto bookDto) {
+        log.info("Creating new book with title: {}", bookDto.getTitle());
         if (bookRepository.existsByTitle(bookDto.getTitle())) {
+            log.info("Cannot create book: '{}' already exists", bookDto.getTitle());
             throw new BookAlreadyExistsException("Book already exists");
         }
         Book book = new Book();
@@ -40,20 +44,29 @@ public class BookService {
         book.setDescription(bookDto.getDescription());
         book.setIsbn(bookDto.getIsbn());
         bookRepository.save(book);
+        log.info("Book '{}' created successfully", bookDto.getTitle());
     }
 
     public void deleteBook(int id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new BookDoesNotExistsException("Book not found"));
+        Book book = bookRepository.findById(id).orElseThrow(() ->
+                new BookDoesNotExistsException("Book not found")
+        );
         bookRepository.delete(book);
+        log.info("Book with id {} deleted successfully", book.getTitle());
     }
 
     public BookDto findBookById(int id) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new BookDoesNotExistsException("Book not found"));
+        Book book = bookRepository.findById(id).orElseThrow(() ->
+                new BookDoesNotExistsException("Book not found")
+        );
+        log.info("Book with id {} found", id);
         return modelMapper.map(book, BookDto.class);
     }
 
     public void updateBook(int id, UpdateBookDto updateBookDto) {
-        Book book = bookRepository.findById(id).orElseThrow(() -> new BookDoesNotExistsException("Book not found"));
+        Book book = bookRepository.findById(id).orElseThrow(() ->
+                new BookDoesNotExistsException("Book not found")
+        );
         if (updateBookDto.getTitle() != null) {
             book.setTitle(updateBookDto.getTitle());
         }
@@ -67,6 +80,7 @@ public class BookService {
             book.setDescription(updateBookDto.getDescription());
         }
         bookRepository.save(book);
+        log.info("Book with id {} updated successfully", id);
     }
 
     public Page<BookResponse> getBooks(BookGenre genre, Double ratingMin, int page, int size, String sort) {
@@ -80,13 +94,14 @@ public class BookService {
         List<BookResponse> bookResponses = books.getContent().stream()
                 .map(this::convertToBookResponse)
                 .collect(Collectors.toList());
-
+        log.info("Successfully retrieved books with page: {}, size: {}, sort: {}", page, size, sort);
         return new PageImpl<>(bookResponses, pageable, books.getTotalElements());
     }
 
     public List<BookResponse> getRecommendedBooks(User user) {
         List<BookGenre> genres = userBookService.getTopThreeGenres(user.getId());
         List<Book> books = bookRepository.findRecommendedBooks(user.getId(), genres);
+        log.info("Successfully retrieved recommended books for user: {}", user.getUsername());
         return books.stream()
                 .map(this::convertToBookResponse)
                 .collect(Collectors.toList());
@@ -107,21 +122,19 @@ public class BookService {
 
     private Sort parseAndValidateSort(String sort) {
         if (sort == null || sort.isEmpty()) {
-            return Sort.by("createdAt").descending(); // Сортировка по умолчанию
+            return Sort.by("createdAt").descending();
         }
-        // Разделяем строку на части по запятой (field,direction)
         String[] sortParts = sort.split(",");
         if (sortParts.length < 1 || sortParts.length > 2) {
             throw new IllegalArgumentException("Invalid sort parameter: " + sort);
         }
-        // Получаем поле сортировки
         String field = sortParts[0].trim();
-        // Проверяем, разрешено ли сортировать по этому полю
+
         if (!ALLOWED_SORT_FIELDS.contains(field)) {
             throw new IllegalArgumentException("Invalid sort field: " + field);
         }
-        // Определяем направление сортировки
-        Sort.Direction direction = Sort.Direction.ASC; // По умолчанию ASC
+
+        Sort.Direction direction = Sort.Direction.ASC;
         if (sortParts.length == 2) {
             String directionString = sortParts[1].trim().toLowerCase();
             if ("desc".equals(directionString)) {
@@ -130,7 +143,17 @@ public class BookService {
                 throw new IllegalArgumentException("Invalid sort direction: " + directionString);
             }
         }
-        // Возвращаем готовую сортировку
+
         return Sort.by(direction, field);
     }
 }
+
+
+
+
+
+
+
+
+
+

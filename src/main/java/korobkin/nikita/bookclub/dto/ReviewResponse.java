@@ -7,6 +7,5 @@ import lombok.Data;
 @AllArgsConstructor
 public class ReviewResponse {
     private String text;
-
     private Float rating;
 }
